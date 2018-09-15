@@ -47,7 +47,7 @@ namespace For.TaskEngine.ConsoleTest
                     case "status":
                         foreach (var task in tasks)
                         {
-                            Console.WriteLine(task.TaskID.ToString(), task.Status);
+                            Console.WriteLine(task.TaskID.ToString() + ":" + task.Status);
                         }
                         break;
                     case "live":

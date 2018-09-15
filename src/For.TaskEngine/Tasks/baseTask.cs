@@ -17,6 +17,7 @@ namespace For.TaskEngine.Tasks
         protected CancellationToken token;
         protected readonly T _job;
         protected int _currentRetry = 0;
+        private bool _isCanceled = false;
 
         public TaskStatus Status => _task.Status;
         public long TaskID => _task.Id;
@@ -36,6 +37,7 @@ namespace For.TaskEngine.Tasks
         {
             if (_task.Status == TaskStatus.RanToCompletion || _task.Status == TaskStatus.Created || _task.Status == TaskStatus.Faulted)
             {
+                _isCanceled = false;
                 _currentRetry = 0;
                 tokenSource = new CancellationTokenSource();
                 token = tokenSource.Token;
@@ -55,6 +57,7 @@ namespace For.TaskEngine.Tasks
         public void Stop()
         {
             if (_task.Status == TaskStatus.Running && BeforeCallCancel()) tokenSource.Cancel();
+            _isCanceled = true;
         }
 
         #endregion 
@@ -128,7 +131,7 @@ namespace For.TaskEngine.Tasks
         {
             return new Task(() =>
             {
-                while (true)
+                while (!_isCanceled)
                 {
                     try
                     {

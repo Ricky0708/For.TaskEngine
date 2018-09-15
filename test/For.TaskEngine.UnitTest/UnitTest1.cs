@@ -62,8 +62,8 @@ namespace For.TaskEngine.UnitTest
             {
                 tasks.Add(new IntervalTask<IJob>(job, new TaskOption
                 {
-                    Interval = 1000,
-                    RetryInterval = 1000,
+                    Interval = 0,
+                    RetryInterval = 0,
                     RetryTimes = 5,
                     AfterExceptionCanceled = (ex) =>
                     {
@@ -104,8 +104,8 @@ namespace For.TaskEngine.UnitTest
             {
                 tasks.Add(new IntervalTask<IJob>(job, new TaskOption
                 {
-                    Interval = 1000,
-                    RetryInterval = 1000,
+                    Interval = 0,
+                    RetryInterval = 0,
                     RetryTimes = 5,
                     AfterExceptionCanceled = (ex) =>
                     {
