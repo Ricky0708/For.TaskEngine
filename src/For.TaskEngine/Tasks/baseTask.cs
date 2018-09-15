@@ -30,10 +30,8 @@ namespace For.TaskEngine.Tasks
         #region public method   
 
         /// <summary>
-        /// <see cref="ITask.Start(int, long)"/>
+        /// start task
         /// </summary>
-        /// <param name="retryTimes"></param>
-        /// <param name="interval"></param>
         public void Start()
         {
             if (_task.Status == TaskStatus.RanToCompletion || _task.Status == TaskStatus.Created || _task.Status == TaskStatus.Faulted)
@@ -52,7 +50,7 @@ namespace For.TaskEngine.Tasks
         }
 
         /// <summary>
-        /// <see cref="ITask.Stop"/>
+        /// stop task
         /// </summary>
         public void Stop()
         {
@@ -64,23 +62,62 @@ namespace For.TaskEngine.Tasks
         #region abstract
 
         /// <summary>
-        /// use job to create a task
+        /// next interval
         /// </summary>
         protected abstract int NextInterval();
+
+        /// <summary>
+        /// retry interval
+        /// </summary>
+        /// <returns></returns>
         protected abstract int RetryInterval();
+
+        /// <summary>
+        /// check should keep retry and get current retry times
+        /// </summary>
+        /// <returns></returns>
         protected abstract Tuple<bool, int> CheckRetry();
 
         #endregion
 
         #region overridable check and log
 
+        /// <summary>
+        /// job processed result
+        /// </summary>
+        /// <param name="obj"></param>
         protected void JobResult(object obj) => _baseOption.JobResult(obj);
+        /// <summary>
+        /// before start
+        /// </summary>
+        /// <returns></returns>
         protected bool BeforeStart() => _baseOption.BeforeStart();
+        /// <summary>
+        /// started
+        /// </summary>
         protected void AfterStarted() => _baseOption.AfterStarted();
+        /// <summary>
+        /// before call cancel
+        /// </summary>
+        /// <returns></returns>
         protected bool BeforeCallCancel() => _baseOption.BeforeCallCancel();
+        /// <summary>
+        /// call cancele
+        /// </summary>
         protected void CancelCalled() => _baseOption.CancelCalled();
+        /// <summary>
+        /// canceled
+        /// </summary>
         protected void AfterCanceled() => _baseOption.AfterCanceled();
+        /// <summary>
+        /// called when out of limit retry times
+        /// </summary>
+        /// <param name="ex"></param>
         protected void AfterExceptionCanceled(System.Exception ex) => _baseOption.AfterExceptionCanceled(ex);
+        /// <summary>
+        /// on retry
+        /// </summary>
+        /// <param name="times"></param>
         protected void OnRetry(int times) => _baseOption.OnRetry(times);
 
         #endregion

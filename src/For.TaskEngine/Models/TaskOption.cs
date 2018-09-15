@@ -9,24 +9,48 @@ namespace For.TaskEngine.Models
     public class TaskOption
     {
         /// <summary>
-        /// ms
+        /// millisecond
         /// </summary>
         public int Interval { get; set; } = 0;
         /// <summary>
-        /// times
+        /// limit retry times
         /// </summary>
         public int RetryTimes { get; set; } = 0;
+        /// <summary>
+        /// millisecond
+        /// </summary>
         public int RetryInterval { get; set; } = 0;
         /// <summary>
-        /// task start message
+        /// job processed result
+        /// </summary>
         public Action<object> JobResult { get; set; } = (obj) => { };
+        /// <summary>
+        /// before start
         /// </summary>
         public Func<bool> BeforeStart { get; set; } = () => true;
+        /// <summary>
+        /// started
+        /// </summary>
         public Action AfterStarted { get; set; } = () => { };
+        /// <summary>
+        /// before call cencel
+        /// </summary>
         public Func<bool> BeforeCallCancel { get; set; } = () => true;
+        /// <summary>
+        /// called cancel
+        /// </summary>
         public Action CancelCalled { get; set; } = () => { };
+        /// <summary>
+        /// cancelded
+        /// </summary>
         public Action AfterCanceled { get; set; } = () => { };
+        /// <summary>
+        /// called when out of limit retry times
+        /// </summary>
         public Action<System.Exception> AfterExceptionCanceled { get; set; } = (ex) => { };
+        /// <summary>
+        /// on retry
+        /// </summary>
         public Action<int> OnRetry { get; set; } = (times) => { };
     }
 }

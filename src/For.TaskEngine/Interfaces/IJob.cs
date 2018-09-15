@@ -8,6 +8,10 @@ namespace For.TaskEngine.Interfaces
 {
     public interface IJob
     {
+        /// <summary>
+        /// process a job
+        /// </summary>
+        /// <returns></returns>
         object DoJob();
     }
 }
