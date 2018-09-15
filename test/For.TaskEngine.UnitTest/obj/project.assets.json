@@ -1617,6 +1617,16 @@
         "runtime": {
           "lib/netstandard1.3/System.Xml.XPath.XmlDocument.dll": {}
         }
+      },
+      "For.TaskEngine/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "compile": {
+          "bin/placeholder/For.TaskEngine.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/For.TaskEngine.dll": {}
+        }
       }
     }
   },
@@ -5712,10 +5722,16 @@
         "system.xml.xpath.xmldocument.4.0.1.nupkg.sha512",
         "system.xml.xpath.xmldocument.nuspec"
       ]
+    },
+    "For.TaskEngine/1.0.0": {
+      "type": "project",
+      "path": "../../src/For.TaskEngine/For.TaskEngine.csproj",
+      "msbuildProject": "../../src/For.TaskEngine/For.TaskEngine.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.1": [
+      "For.TaskEngine >= 1.0.0",
       "MSTest.TestAdapter >= 1.3.2",
       "MSTest.TestFramework >= 1.3.2",
       "Microsoft.NET.Test.Sdk >= 15.8.0",
@@ -5753,7 +5769,11 @@
       },
       "frameworks": {
         "netcoreapp2.1": {
-          "projectReferences": {}
+          "projectReferences": {
+            "D:\\Solution\\完成專案\\For.TaskEngine\\src\\For.TaskEngine\\For.TaskEngine.csproj": {
+              "projectPath": "D:\\Solution\\完成專案\\For.TaskEngine\\src\\For.TaskEngine\\For.TaskEngine.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
