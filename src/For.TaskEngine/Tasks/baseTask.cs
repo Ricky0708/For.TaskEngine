@@ -47,7 +47,6 @@ namespace For.TaskEngine.Tasks
                 });
                 _task = CreateTask();
                 if (BeforeStart()) _task.Start();
-                AfterStarted();
             }
         }
 
@@ -98,7 +97,7 @@ namespace For.TaskEngine.Tasks
         /// <summary>
         /// started
         /// </summary>
-        protected void AfterStarted() => _baseOption.AfterStarted();
+        protected void StartProcess() => _baseOption.StartProcess();
         /// <summary>
         /// before call cancel
         /// </summary>
@@ -136,6 +135,7 @@ namespace For.TaskEngine.Tasks
                     try
                     {
                         token.ThrowIfCancellationRequested();
+                        StartProcess();
                         JobResult(_job.DoJob());
                         SpinWait.SpinUntil(() => false, NextInterval());
                     }

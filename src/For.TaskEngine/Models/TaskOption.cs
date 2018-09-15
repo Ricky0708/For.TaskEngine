@@ -31,7 +31,7 @@ namespace For.TaskEngine.Models
         /// <summary>
         /// started
         /// </summary>
-        public Action AfterStarted { get; set; } = () => { };
+        public Action StartProcess { get; set; } = () => { };
         /// <summary>
         /// before call cencel
         /// </summary>

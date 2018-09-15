@@ -19,7 +19,7 @@ namespace For.TaskEngine.ConsoleTest
                     RetryInterval = 1000,
                     RetryTimes = 5,
                     BeforeStart = () => { Console.WriteLine("Before start"); return true; },
-                    AfterStarted = () => Console.WriteLine("After started"),
+                    StartProcess = () => Console.WriteLine("Start Process"),
                     BeforeCallCancel = () => { Console.WriteLine("Before call cancel"); return true; },
                     CancelCalled = () => Console.WriteLine("Called cancel"),
                     AfterCanceled = () => Console.WriteLine("Canceled"),
