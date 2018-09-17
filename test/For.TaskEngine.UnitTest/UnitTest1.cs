@@ -13,11 +13,11 @@ namespace For.TaskEngine.UnitTest
         [TestMethod]
         public void TestStandard()
         {
-            var tasks = new List<baseTask<IJob>>();
+            var tasks = new List<baseTask>();
             var job = new StandardTestJob();
             for (int i = 0; i < 20; i++)
             {
-                tasks.Add(new IntervalTask<IJob>(job, 1000, new TaskOption
+                tasks.Add(new IntervalTask(job, 1000, new TaskOption
                 {
                     RetryInterval = 1000,
                     RetryTimes = 5,
@@ -54,12 +54,12 @@ namespace For.TaskEngine.UnitTest
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void TestArgumentOutOfRangeException()
         {
-            var tasks = new List<baseTask<IJob>>();
+            var tasks = new List<baseTask>();
             var job = new ArgumentOutOfRangeExceptionTestJob();
             var flag = true;
             for (int i = 0; i < 20; i++)
             {
-                tasks.Add(new IntervalTask<IJob>(job, 0, new TaskOption
+                tasks.Add(new IntervalTask(job, 0, new TaskOption
                 {
                     RetryInterval = 0,
                     RetryTimes = 5,
@@ -95,12 +95,12 @@ namespace For.TaskEngine.UnitTest
         [ExpectedException(typeof(Exception))]
         public void TestException()
         {
-            var tasks = new List<baseTask<IJob>>();
+            var tasks = new List<baseTask>();
             var job = new ArgumentOutOfRangeExceptionTestJob();
             var flag = true;
             for (int i = 0; i < 20; i++)
             {
-                tasks.Add(new IntervalTask<IJob>(job, new TaskOption
+                tasks.Add(new IntervalTask(job, 0, new TaskOption
                 {
                     Interval = 0,
                     RetryInterval = 0,
