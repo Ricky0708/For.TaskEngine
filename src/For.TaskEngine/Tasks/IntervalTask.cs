@@ -8,38 +8,43 @@ using System.Threading.Tasks;
 
 namespace For.TaskEngine.Tasks
 {
-    public class IntervalTask<T> : baseTask<T> where T : IJob
+    public class IntervalTask : baseTask
     {
+        private readonly int _interval;
         private readonly TaskOption _option;
 
         /// <summary>
         /// initial task
         /// </summary>
         /// <param name="job"></param>
+        /// <param name="interval">millisecond</param>
         /// <param name="option"></param>
-        public IntervalTask(T job, TaskOption option) : base(job, option)
+        public IntervalTask(IJob job, int interval, TaskOption option) : base(job, option)
         {
             _option = option;
+            _interval = interval;
         }
 
         /// <summary>
-        /// <see cref="baseTask{T}.CheckRetry"/>
+        /// <see cref="baseTask.CheckRetry"/>
         /// </summary>
         /// <returns></returns>
         protected override Tuple<bool, int> CheckRetry()
         {
             return Tuple.Create(_currentRetry++ < _option.RetryTimes, _currentRetry);
         }
+
         /// <summary>
-        /// <see cref="baseTask{T}.NextInterval"/>
+        /// <see cref="baseTask.NextInterval"/>
         /// </summary>
         /// <returns></returns>
         protected override int NextInterval()
         {
-            return _option.Interval;
+            return _interval;
         }
+
         /// <summary>
-        /// <see cref="baseTask{T}.RetryInterval"/>
+        /// <see cref="baseTask.RetryInterval"/>
         /// </summary>
         /// <returns></returns>
         protected override int RetryInterval()

@@ -10,10 +10,10 @@ namespace For.TaskEngine.ConsoleTest
     {
         static void Main(string[] args)
         {
-            var tasks = new List<baseTask<IJob>>();
+            var tasks = new List<baseTask>();
             for (int i = 0; i < 100; i++)
             {
-                tasks.Add(new IntervalTask<IJob>(new StandardTestJob(), 1000, new TaskOption
+                tasks.Add(new IntervalTask(new ExceptionTestJob(), 1000, new TaskOption
                 {
                     RetryInterval = 1000,
                     RetryTimes = 5,
