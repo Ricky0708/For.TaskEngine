@@ -17,9 +17,8 @@ namespace For.TaskEngine.UnitTest
             var job = new StandardTestJob();
             for (int i = 0; i < 20; i++)
             {
-                tasks.Add(new IntervalTask<IJob>(job, new TaskOption
+                tasks.Add(new IntervalTask<IJob>(job, 1000, new TaskOption
                 {
-                    Interval = 1000,
                     RetryInterval = 1000,
                     RetryTimes = 5,
                     AfterExceptionCanceled = (ex) => throw ex,
@@ -60,9 +59,8 @@ namespace For.TaskEngine.UnitTest
             var flag = true;
             for (int i = 0; i < 20; i++)
             {
-                tasks.Add(new IntervalTask<IJob>(job, new TaskOption
+                tasks.Add(new IntervalTask<IJob>(job, 0, new TaskOption
                 {
-                    Interval = 0,
                     RetryInterval = 0,
                     RetryTimes = 5,
                     AfterExceptionCanceled = (ex) =>

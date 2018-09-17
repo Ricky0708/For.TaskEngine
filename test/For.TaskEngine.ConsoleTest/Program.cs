@@ -13,9 +13,8 @@ namespace For.TaskEngine.ConsoleTest
             var tasks = new List<baseTask<IJob>>();
             for (int i = 0; i < 100; i++)
             {
-                tasks.Add(new IntervalTask<IJob>(new StandardTestJob(), new TaskOption
+                tasks.Add(new IntervalTask<IJob>(new StandardTestJob(), 1000, new TaskOption
                 {
-                    Interval = 1000,
                     RetryInterval = 1000,
                     RetryTimes = 5,
                     BeforeStart = () => { Console.WriteLine("Before start"); return true; },

@@ -9,19 +9,19 @@ using System.Threading.Tasks;
 
 namespace For.TaskEngine.Tasks
 {
-    public abstract class baseTask<T> where T : IJob
+    public abstract class baseTask
     {
         private readonly TaskOption _baseOption;
         protected Task _task;
         protected CancellationTokenSource tokenSource;
         protected CancellationToken token;
-        protected readonly T _job;
+        protected readonly IJob _job;
         protected int _currentRetry = 0;
         private bool _isCanceled = false;
 
         public TaskStatus Status => _task.Status;
         public long TaskID => _task.Id;
-        public baseTask(T job, TaskOption baseOption)
+        public baseTask(IJob job, TaskOption baseOption)
         {
             _baseOption = baseOption;
             _job = job;
